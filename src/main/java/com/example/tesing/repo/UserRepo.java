@@ -1,2 +1,7 @@
-package com.example.tesing.repo;public interface userRepo {
+package com.example.tesing.repo;
+
+import com.example.tesing.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepo extends JpaRepository <User, Integer>{
 }
