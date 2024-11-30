@@ -1,10 +1,12 @@
 package com.example.tesing.Controller;
 
-
 import com.example.tesing.dto.UserDTO;
+import com.example.tesing.entity.User;
 import com.example.tesing.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "api/v1/user")
@@ -14,20 +16,20 @@ public class UserController {
     private UserService userService;
 
 
-    @GetMapping("/getUser")
-    public String getUser(){
-        return "Hello World";
+    @GetMapping("/getUsers")
+    public List<UserDTO> getUser(){
+        return userService.getAllUsers();
     }
     @PostMapping("/saveUser")
     public UserDTO SaveUser(@RequestBody UserDTO userDTO){
         return userService.saveUser(userDTO);
     }
     @PutMapping("/updateUser")
-    public String updateUser(){
-        return "userUpdated";
+    public UserDTO updateUser(@RequestBody UserDTO userDTO){
+        return userService.updateUser(userDTO);
     }
     @DeleteMapping("/deleteUser")
-    public String deleteUser(){
-        return "User Deleted";
+    public boolean deleteUser(@RequestBody UserDTO userDTO){
+        return userService.deleteUser(userDTO);
     }
 }
